@@ -1,0 +1,128 @@
+div {
+    animation: rotate-all 2s 0 infinite linear alternate;
+}
+
+.div1 {
+    width: 80px;
+    height: 80px;
+    /* background-color: #669999; */
+    background-image: url("../img/smart.jpeg");
+    background-size: 80px;
+
+    background-repeat: no-repeat; /* Do not repeat the image */
+    position: relative;
+    margin: auto;
+    animation: square-to-circle 2.5s 0.5s infinite
+        cubic-bezier(1, 0.015, 0.295, 1.225) alternate-reverse;
+}
+
+.div2 {
+    width: 80px;
+    height: 80px;
+    background-image: url("../img/gramming.jpeg");
+    background-size: 80px;
+
+    background-repeat: no-repeat; /* Do not repeat the image */
+    position: relative;
+    margin: auto;
+    animation: square-to-circle2 2.5s 0.42s infinite
+        cubic-bezier(1, 0.015, 0.295, 1.225) alternate-reverse;
+}
+
+#one {
+    top: 150px;
+}
+
+#two {
+    top: 150px;
+    right: 80px;
+}
+
+#three {
+    top: 150px;
+}
+
+#four {
+    bottom: 10px;
+    left: 80px;
+}
+
+@keyframes square-to-circle {
+    0% {
+        border-radius: 0 0 0 0;
+        /* background: ; */
+        transform: rotate(45deg);
+    }
+    25% {
+        border-radius: 50% 0 0 0;
+        background-image: url("../img/logoM.jpeg");
+        background-size: 80px;
+
+        background-repeat: no-repeat; /* Do not repeat the image */
+        transform: rotate(135deg);
+    }
+    50% {
+        border-radius: 50% 50% 0 0;
+        background-image: url("../img/logoM.jpeg");
+        background-size: 80px;
+
+        background-repeat: no-repeat; /* Do not repeat the image */
+        transform: rotate(180deg);
+    }
+    75% {
+        border-radius: 50% 50% 50% 0;
+        background-image: url("../img/logoM.jpeg");
+        background-size: 80px;
+
+        background-repeat: no-repeat; /* Do not repeat the image */
+        transform: rotate(315deg);
+    }
+    100% {
+        border-radius: 50%;
+        background-image: url("../img/logoM.jpeg");
+        background-size: 80px;
+
+        background-repeat: no-repeat; /* Do not repeat the image */
+        transform: rotate(404deg);
+    }
+}
+
+@keyframes square-to-circle2 {
+    0% {
+        border-radius: 0 0 0 0;
+        /* background: ; */
+        transform: rotate(45deg);
+    }
+    25% {
+        border-radius: 0 0 50% 0;
+        background-image: url("../img/logoM.jpeg");
+        background-size: 80px;
+
+        background-repeat: no-repeat; /* Do not repeat the image */
+        transform: rotate(135deg);
+    }
+    50% {
+        border-radius: 0 0 50% 50%;
+        background-image: url("../img/logoM.jpeg");
+        background-size: 80px;
+
+        background-repeat: no-repeat; /* Do not repeat the image */
+        transform: rotate(180deg);
+    }
+    75% {
+        border-radius: 50% 0 50% 50%;
+        background-image: url("../img/logoM.jpeg");
+        background-size: 80px;
+
+        background-repeat: no-repeat; /* Do not repeat the image */
+        transform: rotate(315deg);
+    }
+    100% {
+        border-radius: 50%;
+        background-image: url("../img/logoM.jpeg");
+        background-size: 80px;
+
+        background-repeat: no-repeat; /* Do not repeat the image */
+        transform: rotate(404deg);
+    }
+}
