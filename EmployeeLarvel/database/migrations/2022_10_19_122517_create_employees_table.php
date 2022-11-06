@@ -15,17 +15,16 @@ return new class extends Migration
     {
         Schema::create('employees', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('position_id')->constrained()->unsigned();
+            $table->bigInteger('position_id');
             $table->string('name');
             $table->string('email')->unique();
             $table->string('password');
             $table->integer('phone');
-            $table->integer('adress');
+            $table->string('adress');
             $table->date('birthdate')->nullable();
             $table->date('date_hired')->nullable();
             $table->string('image');
-            $table->foreign('position_id')->references('id')->on('position')
-            ->onDelete('cascade');
+            $table->rememberToken();
             $table->timestamps();
         });
     }

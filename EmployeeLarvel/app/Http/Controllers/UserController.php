@@ -8,8 +8,7 @@ use App\Models\Employee;
 use App\Models\Position;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
-use Illuminate\Support\Facades\DB;
-use App\Models\User;
+
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -19,11 +18,12 @@ class UserController extends Controller
 {
     function login(Request $request)
     {
-        // $request->validate([
-        //     'name' => 'required|max:30',
-        //     'email' => 'required',
-        // ]);
+        if (Auth::guard('employee')->check()) {
+            return redirect('/profile');
+        } else {
+            
         return view('employee_login');
+        }
     }
 
 
@@ -34,35 +34,51 @@ class UserController extends Controller
             'password' => 'required',
         ]);
 
-        $user  = Employee::where('email', '=', $request->email)->where('password', '=', $request->password)->first();
+        // $user  = Employee::where('email', '=', $request->email)->where('password', '=', $request->password)->first();
 
-        // $user  = employees::where('email', '=', $request->email)->first();
-        $pass = Employee::where('password', '=', $request->password)->first();
+        // // $user  = employees::where('email', '=', $request->email)->first();
+        // $pass = Employee::where('password', '=', $request->password)->first();
 
-        if ($user) {
+        // if ($user) {
 
-            if ($pass) {
+        //     if ($pass) {
 
-                $request->Session()->put('loginId', $user->id);
-                return redirect()->route('profile');
-            } else {
-                return back()->with('failed', 'wrong password');
-            }
+        //         $request->Session()->put('loginId', $user->id);
+        //         return redirect()->route('profile');
+        //     } else {
+        //         return back()->with('failed', 'wrong password');
+        //     }
+        // } else {
+        //     return back()->with('failed', 'failed this email is not registered');
+        // };
+        // $credentials = $request->only('email', 'password');
+        // dd($credentials);
+        
+        $auth = Employee::loginAdmin($request);
+        // dd($auth);
+
+        if ($auth) {
+            return redirect()->route('profile');
         } else {
-            return back()->with('failed', 'failed this email is not registered');
-        };
-    }
-    function profile()
-    {
-        $data = array();
-        $currentTime = Carbon::now('GMT+8')->format('H:i:s');
-        // dd(Session::has('loginId'));
-        if (Session::has('loginId')) {
-
-            $data = Employee::where('id', '=', Session::get('loginId'))->first();
+            return back()->with('failed', 'smth wrong');
         }
+    }
+
+    function profile(Request $request)
+    {
+        // $data = array();
+    
+        $currentTime = Carbon::now('GMT+8')->format('H:i:s');
+        // // dd(Session::has('loginId'));
+        // if (Session::has('loginId')) {
+
+        //     $data = Employee::where('id', '=', Session::get('loginId'))->first();
+
         // dd($data->attendance->last()->toArray());
         // dd($data->attendances->last()->check_in_out);
+        // $id = Auth::id();
+        $data= Auth::user();
+        // dd($user);
         return view('employee_profile', compact('data', 'currentTime'));
     }
 
@@ -74,6 +90,6 @@ class UserController extends Controller
 
         Auth::logout();
 
-        return Redirect('employee_login');
+        return Redirect('login');
     }
 }

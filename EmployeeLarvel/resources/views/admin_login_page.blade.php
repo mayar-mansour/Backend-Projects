@@ -17,7 +17,7 @@
 
     <link rel="stylesheet" type="text/css" href="{{ asset('css/util.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/main.css') }}">
-     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css">
     <!--===============================================================================================-->
 </head>
 
@@ -57,7 +57,12 @@
                             @enderror
                         </span>
                     </div>
-
+                    <div class="form-check m-4">
+                        <input class="form-check-input me-2" type="checkbox" value="1" name="remember" id="form2Example3" />
+                        <label class="form-check-label" for="remember">
+                            Remember me
+                        </label>
+                    </div>
                     <div class="container-login100-form-btn m-t-32">
                         <button class="login100-form-btn">
                             Login

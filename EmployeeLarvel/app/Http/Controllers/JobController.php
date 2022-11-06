@@ -104,5 +104,15 @@ class JobController extends Controller
         return view('edit_job', compact('positions'))->with('success', 'position updated.'); // -> resources/views/stocks/index.blade.php
         // return back()->with('success', 'position updated.'); // -> resources/views/stocks/index.blade.php
     }
-
+    public function searchPositions(Request $request)
+    {
+       
+        $positions = Position::all();
+        if ($request->has('search')) {
+            $positions =  Position::where('title', 'like', '%' . $request['search'] . '%')->get();
+            // $positions =  Position::where('title', 'like', '%' . $request['search'] . '%')->get();
+            // dd($employees);
+        }
+        return view('display_jobs', compact('positions'));
+    }
 }

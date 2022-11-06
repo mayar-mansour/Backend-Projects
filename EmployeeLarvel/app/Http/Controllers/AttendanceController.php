@@ -20,8 +20,8 @@ class AttendanceController extends Controller
     public function checkIn(Request $request)
     {
 
-        $data = Employee::where('id', '=', Session::get('loginId'))->first();
-
+        // $data = Employee::where('id', '=', Session::get('loginId'))->first();
+        $data = Auth::user();
         $attendance = new Attendance();
         $attendance->employee_id =  $data->id;
         // $attendance->date = $request->date;
@@ -38,7 +38,8 @@ class AttendanceController extends Controller
     public function checkOut(Request $request)
     {
 
-        $data = Employee::where('id', '=', Session::get('loginId'))->first();
+        $data = Auth::user();
+       
 
         $attendance = new Attendance();
         $attendance->employee_id =  $data->id;
@@ -58,6 +59,21 @@ class AttendanceController extends Controller
         // $attends = attendances::where('id')->get();
         $attends = Attendance::all();
         // dd($jobs);
+        return view('list_of_attendances', compact('attends'));
+    }
+    
+    public function searchEmployeeAttend(Request $request)
+    {
+
+        $attends = Attendance::all();
+        // $employees = Attendance::all();
+
+
+        if ($request->has('search')) {
+            // $employees =  Attendance::where('employee->name ', 'like', '%' . $request['search'] . '%')->get();
+            $attends =  Attendance::where('check_in_out', 'like', '%' . $request['search'] . '%')->orwhere('time_in_out', 'like', '%' . $request['search'] . '%')->get();
+            // dd($attendances);
+        }
         return view('list_of_attendances', compact('attends'));
     }
 }

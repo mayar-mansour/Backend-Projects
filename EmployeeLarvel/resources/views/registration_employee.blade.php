@@ -42,7 +42,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="employee_profile.php">
+                <a class="nav-link" href="/">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     Dashboard</a>
 
@@ -68,7 +68,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Options</h6>
                         <a class="collapse-item" href="registration">Add New Employee</a>
-                        <a class="collapse-item" href="cards.html">Display Employees </a>
+                        <a class="collapse-item" href="display_employee">Display Employees </a>
                     </div>
                 </div>
             </li>

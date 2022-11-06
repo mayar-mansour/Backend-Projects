@@ -3,16 +3,29 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
+
 use Illuminate\Support\Str;
 
 use App\Models\Position;
 use App\Models\Attendance;
 
-class Employee extends Model
+class Employee extends Authenticatable
 {
     use HasFactory;
+
+    protected $guard = 'employee';
+
+    static function loginAdmin($request)
+    {
+        $credentials = $request->only('email', 'password');
+        $remember_me = $request->has('remember_me');
+        return Auth::guard('employee')->attempt($credentials, $remember_me);
+    }
+
 
     protected $fillable = [
         'position_id', 'name', 'email', 'password', 'phone', 'adress', 'birthdate', 'date_hired', 'image'
@@ -34,18 +47,18 @@ class Employee extends Model
         return $this->hasMany(Attendance::class, 'employee_id');
     }
 
-    public function save(array $options = [])
-    {
-        if (!$this->exists && empty($this->getAttribute('password'))) {
-            $this->password = Str::random(4);
-        }
-        return parent::save($options);
-    }
+    // public function save(array $options = [])
+    // {
+    //     if (!$this->exists && empty($this->getAttribute('password'))) {
+    //         $this->password = 1234;
+    //     }
+    //     return parent::save($options);
+    // }
 
-    public function setPasswordAttribute($value)
-    {
-        if (!empty($value)) {
-            $this->attributes['password'] = Hash::make($value);
-        }
-    }
+    // public function setPasswordAttribute($value)
+    // {
+    //     if (!empty($value)) {
+    //         $this->attributes['password'] = Hash::make($value);
+    //     }
+    // }
 }

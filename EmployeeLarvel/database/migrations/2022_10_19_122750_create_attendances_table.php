@@ -15,12 +15,8 @@ return new class extends Migration
     {
         Schema::create('attendances', function (Blueprint $table) {
             $table->id();
-            // $table->timestamp('date')->useCurrent();
-            $table->foreign('employee_id')->references('id')->on('employees')
-            ->onDelete('cascade');
+            $table->bigInteger('employee_id');
             $table->time('time_in_out')->useCurrent();
-            $table->string('check_in_out');
-            // $table->time('time_out')->nullable();;
             $table->timestamps();
         });
     }

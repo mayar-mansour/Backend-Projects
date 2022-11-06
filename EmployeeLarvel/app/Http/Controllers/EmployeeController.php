@@ -15,6 +15,9 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Crypt;
+
+use App\Http\Controllers\bcrypt;
 
 $positions = Position::all();
 class EmployeeController extends Controller
@@ -42,6 +45,18 @@ class EmployeeController extends Controller
 
         // post create for each input ,then stored into input variable and request all
         $input = $request->all();
+        // $input->password =Crypt::encrypt($request->get('name'));
+        $input = new Employee();
+        $input->name = $request->name;
+        $input->position_id = $request->position_id;
+        $input->email = $request->email;
+        $input->adress = $request->adress;
+        $input->phone = $request->phone;
+        $input->birthdate = $request->birthdate;
+        $input->date_hired = $request->date_hired;
+        $input->password = bcrypt($request->password);
+       
+
 
         if ($image = $request->file('image')) {
             // new image path
@@ -51,10 +66,11 @@ class EmployeeController extends Controller
             $image->move($destinationPath, $profileImage);
             // get your data from profileImage
             $input['image'] = "$profileImage";
+            // $input->image = "$profileImage";
         }
 
-        Employee::create($input);
-
+      
+        $input->save();
         return redirect('dashboard')
             ->with('success', 'employee added successfully.');
     }
@@ -94,12 +110,12 @@ class EmployeeController extends Controller
     public function updateEmployee(Request $request)
     {
         $positions = Position::all();
-    $employees = Employee::find($request->id);
+        $employees = Employee::find($request->id);
 
 
         $employees->name =  $request->get('name');
         $employees->email = $request->get('email');
-        $employees->password = $request->get('password');
+        $employees->password = bcrypt($request->password);
         $employees->adress = $request->get('adress');
         $employees->phone = $request->get('phone');
         $employees->birthdate = $request->get('birthdate');
@@ -114,7 +130,6 @@ class EmployeeController extends Controller
             $image->move($destinationPath, $profileImage);
             // get your data from profileImage
             $employees['image'] = "$profileImage";
-
         }
 
         $employees->save();
@@ -122,5 +137,15 @@ class EmployeeController extends Controller
         // return view('/edit_employee', compact('employees', 'positions'))->with('success', 'employee updated.');
         return back()->with('success', 'employee updated.');
     }
-
+    public function employeeSearch(Request $request)
+    {
+        $employees = Employee::all();
+        // $positions = Position::all();
+        if ($request->has('search')) {
+            $employees =  Employee::where('name', 'like', '%'.$request['search'].'%')->orwhere('email', 'like', '%' . $request['search'] . '%')->get();
+            // $positions =  Position::where('title', 'like', '%' . $request['search'] . '%')->get();
+            // dd($employees);
+        }
+        return view('display_employee', compact('employees'));
+    }
 }

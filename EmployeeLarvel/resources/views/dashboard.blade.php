@@ -187,7 +187,10 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Mayar Mansour</span>
+                                 <form action="{{ route('dashboard_profile') }}" method="get">
+                                {{-- <span class="mr-2 d-none d-lg-inline text-gray-600 small"> {{ $data->name }}</span> --}}
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small"> Mayar Mansour</span>
+                                 </form>
                                 <img class="img-profile rounded-circle"
                                     src="img/WhatsApp Image 2022-05-17 at 11.25.46 PM.jpeg">
                             </a>
@@ -201,14 +204,12 @@
 
                                 <!-- logout for admin -->
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#" data-toggle="modal"
-                                    data-target="#logoutModal">
-                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Logout
-                                </a>
+                                <button style="border: none;"> <a class="dropdown-item" href="logout_admin">
+                                        <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                        Logout
+                                    </a></button>
                             </div>
                         </li>
-
                     </ul>
 
                 </nav>
@@ -216,12 +217,15 @@
 
                     <!-- Page Heading -->
                     <div class="align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 " style="text-align: center"><span class="text-primary">Welcome</span><span style="color:green"> to</span><span style="color: orange"> Smart</span><span style="color:orangered"> Gramming </span><span  style="color: rgb(185, 5, 5)"> Company</span>
+                        <h1 class="h3 mb-0 " style="text-align: center"><span
+                                class="text-primary">Welcome</span><span style="color:green"> to</span><span
+                                style="color: orange"> Smart</span><span style="color:orangered"> Gramming
+                            </span><span style="color: rgb(185, 5, 5)"> Company</span>
                         </h1>
                         {{-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                                 class="fas fa-download fa-sm text-white-50"></i> Generate Report</a> --}}
                     </div>
-                    <div  class=" cont w-150" >
+                    <div class=" cont w-150">
                         <div class="div1" id="one"></div>
                         <div class="div1" id="two"></div>
                         <div class="div2" id="three"></div>

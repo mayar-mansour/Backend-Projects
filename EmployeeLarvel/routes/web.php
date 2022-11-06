@@ -19,41 +19,59 @@ use App\Http\Controllers\AdminController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+
+// Route::group(['middleware' => 'auth:admin', 'prefix' => 'admin'], function () {
+Route::group(['middleware' => 'auth:admin'], function () {
+
+    Route::get('/', function () {
+        return view('dashboard');
+    });
+    Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
+    Route::get('/logout_admin', [AdminController::class, 'logoutAdmin'])->name('logout_admin');
+    Route::get('/dashboard_profile', [AdminController::class, 'adminprofile'])->name('dashboard_profile');
+    Route::get('/employee_search', [EmployeeController::class, 'employeeSearch'])->name('employee_search');
+    //job
+    Route::get('/job', [JobController::class, 'addNewPosition']);
+    Route::post('/add-job', [JobController::class, 'AddJob'])->name('add-job');
+    Route::get('/display-job', [JobController::class, 'fetchPositionData'])->name('display-job');
+    Route::delete('/delete/{id}', [JobController::class, 'destroyPosition'])->name('destroy');
+    Route::get('/edit_job/{id}', [JobController::class, 'editPosition'])->name('edit_job');
+    Route::get('/update/{id}', [JobController::class, 'updatePosition'])->name('update');
+    Route::get('/show_emp/{id}', [JobController::class, 'showJobsEmployee'])->name('show_emp');
+    Route::post('/updateJob', [JobController::class, 'updateJob'])->name('updateJob');
+    Route::get('/job_search', [JobController::class, 'searchPositions'])->name('job_search');
+    //employee
+    Route::get('/registration', [EmployeeController::class, 'registartion']);
+    Route::post('/registartion-user', [EmployeeController::class, 'registartionEmp'])->name('registartion-user');
+    Route::get('/display_employee', [EmployeeController::class, 'fetchEmployeeData'])->name('display_employee');
+    Route::delete('/deleteEmployee/{id}', [EmployeeController::class, 'destroyEmployee'])->name('destroyEmployee');
+    Route::get('/edit_employees/{id}', [EmployeeController::class, 'editEmployee'])->name('edit_employees');
+    Route::post('/update_employees', [EmployeeController::class, 'updateEmployee'])->name('update_employees');
+    //attendance
+    Route::get('/attendance', [AttendanceController::class, 'listOfAttendances'])->name('attendance');
+    Route::get('/search_employee_attend', [AttendanceController::class, 'searchEmployeeAttend'])->name('search_employee_attend');
 });
 
 
-Route::get('/dashboard', [EmployeeController::class, 'dashboard']);
-// Route::get('/regs', [AdminController::class, 'admin_registration_page']);
+// Route::get('/dashboard', [AdminController::class, 'dashboard'])->middleware('auth:admin')->name('admin');
+
 //admin
 Route::get('/reg_admin', [AdminController::class, 'registrationPage']);
 Route::post('/registartion_admin', [AdminController::class, 'adminRegistration'])->name('registartion_admin');
-Route::get('/login_page', [AdminController::class, 'loginPage']);
+Route::get('/login_page', [AdminController::class, 'loginPage'])->name('login');
 Route::post('/login_admin', [AdminController::class, 'loginAdmin'])->name('login_admin');
 
-//job
-Route::get('/job', [JobController::class, 'addNewPosition']);
-Route::post('/add-job', [JobController::class, 'AddJob'])->name('add-job');
-Route::get('/display-job', [JobController::class, 'fetchPositionData'])->name('display-job');
-Route::delete('/delete/{id}', [JobController::class, 'destroyPosition'])->name('destroy');
-Route::get('/edit_job/{id}', [JobController::class, 'editPosition'])->name('edit_job');
-Route::get('/update/{id}', [JobController::class, 'updatePosition'])->name('update');
-Route::get('/show_emp/{id}', [JobController::class, 'showJobsEmployee'])->name('show_emp');
-Route::post('/updateJob', [EmployeeController::class, 'updateJob'])->name('updateJob');
-//employee
-Route::get('/registration', [EmployeeController::class, 'registartion']);
-Route::post('/registartion-user', [EmployeeController::class, 'registartionEmp'])->name('registartion-user');
-Route::get('/display_employee', [EmployeeController::class, 'fetchEmployeeData'])->name('display_employee');
-Route::delete('/deleteEmployee/{id}', [EmployeeController::class, 'destroyEmployee'])->name('destroyEmployee');
-Route::get('/edit_employees/{id}', [EmployeeController::class, 'editEmployee'])->name('edit_employees');
-Route::post('/update_employees', [EmployeeController::class, 'updateEmployee'])->name('update_employees');
+Route::group( ['middleware' => 'auth:employee'], function () {
+    Route::get('/profile', [UserController::class, 'profile'])->name('profile');
+    Route::get('/logout', [UserController::class, 'logout'])->name('logout');
+    //attendance
+    Route::post('/check_out', [AttendanceController::class, 'checkOut'])->name('check_out');
+    Route::post('/check_in', [AttendanceController::class, 'checkIn'])->name('check_in');
+
+});
 //login
 Route::get('/login', [UserController::class, 'login']);
 Route::post('/login_user', [UserController::class, 'loginUser'])->name('login_user');
-Route::get('/profile', [UserController::class, 'profile'])->name('profile');
-Route::get('/logout', [UserController::class, 'logout'])->name('logout');
-//attendance
-Route::post('/check_out', [AttendanceController::class, 'checkOut'])->name('check_out');
-Route::post('/check_in', [AttendanceController::class, 'checkIn'])->name('check_in');
-Route::get('/attendance', [AttendanceController::class, 'listOfAttendances'])->name('attendance');;
+// Route::get('/profile', [UserController::class, 'profile'])->name('profile');
+
+
