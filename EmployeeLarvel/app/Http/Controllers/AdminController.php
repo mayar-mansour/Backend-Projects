@@ -9,10 +9,10 @@ use Illuminate\Support\Facades\Session;
 
 class AdminController extends Controller
 {
-    // public function dashboard()
-    // {
-    //     return view('dashboard');
-    // }
+    public function dashboard()
+    {
+        return view('dashboard');
+    }
 
     public function registrationPage(Request $request)
     {

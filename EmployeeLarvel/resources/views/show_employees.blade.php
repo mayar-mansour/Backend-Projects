@@ -283,7 +283,6 @@
                                             <td>{{ $position->title }}</td>
 
                                             <td>{{ $position->code }}</td>
-
                                             @if($position->employees)
                                             @foreach ($position->employees as $emp)
                                                 <td class="col-md-4">{{ $emp->name }}</td>

@@ -21,7 +21,7 @@ class UserController extends Controller
         if (Auth::guard('employee')->check()) {
             return redirect('/profile');
         } else {
-            
+
         return view('employee_login');
         }
     }
@@ -67,7 +67,7 @@ class UserController extends Controller
     function profile(Request $request)
     {
         // $data = array();
-    
+
         $currentTime = Carbon::now('GMT+8')->format('H:i:s');
         // // dd(Session::has('loginId'));
         // if (Session::has('loginId')) {
@@ -88,9 +88,9 @@ class UserController extends Controller
         // dd($data->attendance);
         $attends = Attendance::where('employee_id', auth()->user()->id)->paginate(2);
         // $data->paginate(2)
-        
-      
-     
+
+
+
         return view('show_user_details', compact('data', 'attends' ));
     }
 

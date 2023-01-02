@@ -19,7 +19,6 @@ use Illuminate\Support\Facades\Crypt;
 
 use App\Http\Controllers\bcrypt;
 
-
 $positions = Position::all();
 class EmployeeController extends Controller
 {
@@ -62,7 +61,6 @@ class EmployeeController extends Controller
         $input->birthdate = $request->birthdate;
         $input->date_hired = $request->date_hired;
         $input->password = bcrypt($request->password);
-
 
 
         if ($image = $request->file('image')) {
@@ -140,7 +138,7 @@ class EmployeeController extends Controller
 
         $employees->name =  $request->get('name');
         $employees->email = $request->get('email');
-        // $employees->password = Hash::make($request['password']);
+        $employees->password = Hash::make($request['password']);
         $employees->adress = $request->get('adress');
         $employees->phone = $request->get('phone');
         $employees->birthdate = $request->get('birthdate');

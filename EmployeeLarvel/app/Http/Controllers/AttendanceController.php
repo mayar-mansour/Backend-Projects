@@ -41,7 +41,6 @@ class AttendanceController extends Controller
 
         $data = Auth::user();
 
-
         $attendance = new Attendance();
         $attendance->employee_id =  $data->id;
         // $attendance->date = $request->date;
@@ -64,7 +63,6 @@ class AttendanceController extends Controller
         // dd($jobs);
         return view('list_of_attendances', compact('attends'));
     }
-
     public function searchEmployeeAttend(Request $request)
     {
 
@@ -88,13 +86,13 @@ class AttendanceController extends Controller
     }
     public function updateEmployeeAttend(Request $request)
     {
-       
+
         $attends = Attendance::find($request->hidden_id);
         $attends->time_in_out =  $request->get('time_in_out');
         $attends->check_in_out = $request->get('check_in_out');
         $attends->save();
 
- 
+
         // return back()->with('success', 'attend updated.');
         return view('edit_employee_attendance', compact('attends'))->with('success', 'attendance updated.');
     }
