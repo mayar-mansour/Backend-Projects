@@ -74,7 +74,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="dashboard">
+                <a class="nav-link" href="admin.dashboard">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     Dashboard</a>
 
@@ -283,15 +283,15 @@
                                             <td>{{ $position->title }}</td>
 
                                             <td>{{ $position->code }}</td>
-                                
+
                                             {{-- @if($position->employees)
                                             @foreach ($position->employees as $emp)
                                                 <td>{{ $emp->name }}</td>
                                             @endforeach
-                                            
+
                                             @else
                                                 <td>null</td>
-                                            
+
                                             @endif --}}
 
 
@@ -310,7 +310,7 @@
                                                     <button type="submit" class="btn btn-danger"
                                                         onclick="return confirm('Are you sure you want to delete this item?');">Delete</button>
                                                 </form>
-                                                
+
                                             </td>
 
 
@@ -323,7 +323,9 @@
 
 
                             </div>
+
                         </div>
+                         <div class="mt-3 pagging">{{ $positions->render() }} </div>
                     </div>
 
 

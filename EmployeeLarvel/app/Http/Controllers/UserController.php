@@ -53,12 +53,12 @@ class UserController extends Controller
         // };
         // $credentials = $request->only('email', 'password');
         // dd($credentials);
-        
+        $employees = Employee::paginate(5);
         $auth = Employee::loginAdmin($request);
         // dd($auth);
 
         if ($auth) {
-            return redirect()->route('profile');
+            return redirect()->route('profile', compact('employees'));
         } else {
             return back()->with('failed', 'smth wrong');
         }
@@ -80,6 +80,18 @@ class UserController extends Controller
         $data= Auth::user();
         // dd($user);
         return view('employee_profile', compact('data', 'currentTime'));
+    }
+    function profileDetails(Request $request)
+    {
+        // $employees = Employee::paginate(5);
+        $data= Auth::user();
+        // dd($data->attendance);
+        $attends = Attendance::where('employee_id', auth()->user()->id)->paginate(2);
+        // $data->paginate(2)
+        
+      
+     
+        return view('show_user_details', compact('data', 'attends' ));
     }
 
     // return redirect('login')->with('success', 'you are not allowed to access');

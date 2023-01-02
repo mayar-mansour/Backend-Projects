@@ -11,12 +11,13 @@ use App\Models\Position;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use App\Models\User;
-
+use Illuminate\Database\Eloquent\link;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Hash;
 
 class AttendanceController extends Controller
 {
+
     public function checkIn(Request $request)
     {
 
@@ -39,7 +40,7 @@ class AttendanceController extends Controller
     {
 
         $data = Auth::user();
-       
+
 
         $attendance = new Attendance();
         $attendance->employee_id =  $data->id;
@@ -57,11 +58,13 @@ class AttendanceController extends Controller
     public function listOfAttendances()
     {
         // $attends = attendances::where('id')->get();
-        $attends = Attendance::all();
+        // $attends = Attendance::all();
+        // $attendance = DB::table('attendances')->orderBy('id', 'desc')->paginate(2);
+        $attends = Attendance::paginate(5);
         // dd($jobs);
         return view('list_of_attendances', compact('attends'));
     }
-    
+
     public function searchEmployeeAttend(Request $request)
     {
 
@@ -75,5 +78,24 @@ class AttendanceController extends Controller
             // dd($attendances);
         }
         return view('list_of_attendances', compact('attends'));
+    }
+    public function editEmployeeAttend($id)
+    {
+        // $employees = Employee::find($id);
+        $attends = Attendance::find($id);
+        // dd($attend);
+        return view('edit_employee_attendance', compact('attends'));
+    }
+    public function updateEmployeeAttend(Request $request)
+    {
+       
+        $attends = Attendance::find($request->hidden_id);
+        $attends->time_in_out =  $request->get('time_in_out');
+        $attends->check_in_out = $request->get('check_in_out');
+        $attends->save();
+
+ 
+        // return back()->with('success', 'attend updated.');
+        return view('edit_employee_attendance', compact('attends'))->with('success', 'attendance updated.');
     }
 }

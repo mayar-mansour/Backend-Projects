@@ -69,7 +69,7 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class=" d-flex align-items-center justify-content-center" href="dashboard">
+            <a class=" d-flex align-items-center justify-content-center" href="admin.dashboard">
                 <div class="sidebar-brand-icon w-10 ">
                     <img src="/img/mq1.jpg" alt=""class="w-10">
                 </div>
@@ -79,7 +79,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="dashboard">
+                <a class="nav-link" href="admin.dashboard">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     Dashboard</a>
 
@@ -276,10 +276,10 @@
                                             <th>Name</th>
                                             <th>Position</th>
                                             <th>Email</th>
-                                            <th>Phone</th>
+                                            {{-- <th>Phone</th>
                                             <th>Adress</th>
                                             <th>Birth Date</th>
-                                            <th>Hire Date</th>
+                                            <th>Hire Date</th> --}}
                                             <th>Actions</th>
 
                                         </tr>
@@ -291,35 +291,38 @@
                                         <tr>
                                             <td>{{ $employee->id }}</td>
                                             <td><img class="img" src="/image/{{ $employee->image }}"></td>
-                                            <td>{{ $employee->name }}</td>
+                                            <td class="col-md-3">{{ $employee->name }}</td>
                                             @if ($employee->position)
-                                                <td>{{ $employee->position->title }}</td>
+                                                <td class="col-md-2">{{ $employee->position->title }}</td>
                                             @else
                                                 <td> -- </td>
                                             @endif
 
                                             <td>{{ $employee->email }}</td>
-                                            <td>{{ $employee->phone }}</td>
+                                            {{-- <td>{{ $employee->phone }}</td>
                                             <td>{{ $employee->adress }}</td>
                                             <td>{{ $employee->birthdate }}</td>
-                                            <td>{{ $employee->date_hired }}</td>
+                                            <td>{{ $employee->date_hired }}</td> --}}
 
                                             <td>
                                                 <form action="{{ route('destroyEmployee', $employee->id) }}"
                                                     method="POST" style="display: flex;">
 
                                                      <a class=" mr-2 mt-2"
+                                                        href="{{ route('show_employee', $employee->id) }}"> <i class="fa fa-eye" aria-hidden="true"></i></a>
+
+                                                     <a class=" mr-2 mt-2"
                                                         href="{{ route('edit_employees', $employee->id) }}"> <i class="material-icons"
                                                                 data-toggle="tooltip"
                                                                 title="Edit">&#xE254;</i></a>
 
-                                                    
+
 
 
                                                     @csrf
                                                     @method('DELETE')
 
-                                                    <button type="submit" class="btn"
+                                                    <button type="submit" class="btn ml--2"
                                                         onclick="return confirm('Are you sure you want to delete this item?');"><i
                                                             class="material-icons" data-toggle="tooltip"
                                                             title="Delete">&#xE872;</i></button>
@@ -334,7 +337,7 @@
                                     </tbody>
                                 </table>
 
-
+   <div class="mt-3 pagging">{{ $employees->render() }} </div>
                             </div>
                         </div>
                     </div>

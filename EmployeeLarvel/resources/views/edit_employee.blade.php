@@ -270,7 +270,7 @@ border-radius: 50px;
                                                 <div class="form-outline flex-fill mb-0">
                                                     <label class="form-label" for="form3Example4c">Password</label>
                                                     <input type="password" name="password" id="form3Example4c"
-                                                        class="form-control" value="{{ old('password',$employees->password) }}" />
+                                                        class="form-control" value />
 
                                                     <span class="text-danger">
                                                         @error('password')

@@ -28,6 +28,21 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="{{ asset('css/table.css') }} ">
+    {{-- <style>
+        .pagging img,svg{
+            width: 30px;
+
+        }
+        .pagging p{
+           padding-top: 1%;
+
+        }
+        /* .pagging{
+          position: relative;
+          left: 75%;
+
+        } */
+    </style> --}}
     <script>
         $(document).ready(function() {
             // Activate tooltip
@@ -64,7 +79,7 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class=" d-flex align-items-center justify-content-center" href="dashboard">
+            <a class=" d-flex align-items-center justify-content-center" href="">
                 <div class="sidebar-brand-icon w-10 ">
                     <img src="/img/mq1.jpg" alt=""class="w-10">
                 </div>
@@ -74,7 +89,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="dashboard">
+                <a class="nav-link" href="admin.dashboard">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     Dashboard</a>
 
@@ -256,12 +271,13 @@
 
                                     </div>
                                 </div>
-                                
+
                                 <table class="table  table-fixed">
                                     <thead class="">
                                         <tr class="bg-success">
 
 
+                                            <th scope="col">ID</th>
                                             <th scope="col">Date</th>
                                             <th scope="col" class="">Employee</th>
                                             <th scope="col">Attendance</th>
@@ -275,6 +291,7 @@
                                     @foreach ($attends as $attend)
                                         <tr>
 
+                                            <td class="col-md-4">{{ $attend->id }}</td>
                                             <td class="col-md-4">{{ $attend->time_in_out }}</td>
                                             <td class="col-md-6">{{ $attend->employee->name }}</td>
                                           {{-- @dd ($attend->employee->toArray()) --}}
@@ -290,8 +307,11 @@
                                 </table>
 
 
+
                             </div>
+                            <div class="mt-3 pagging">{{ $attends->render() }} </div>
                         </div>
+
                     </div>
 
 

@@ -9,10 +9,10 @@ use Illuminate\Support\Facades\Session;
 
 class AdminController extends Controller
 {
-    public function dashboard()
-    {
-        return view('dashboard');
-    }
+    // public function dashboard()
+    // {
+    //     return view('dashboard');
+    // }
 
     public function registrationPage(Request $request)
     {
@@ -65,7 +65,7 @@ class AdminController extends Controller
         // dd(Auth::viaRemember());
         if ($auth) {
 
-            return redirect()->route("admin.dashboard");
+            return redirect()->route("dashboard_count");
         }
 
         // if ($admin) {

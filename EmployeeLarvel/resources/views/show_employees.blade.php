@@ -64,7 +64,7 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class=" d-flex align-items-center justify-content-center" href="dashboard">
+            <a class=" d-flex align-items-center justify-content-center" href="admin.dashboard">
                 <div class="sidebar-brand-icon w-10 ">
                     <img src="/img/mq1.jpg" alt=""class="w-10">
                 </div>
@@ -74,7 +74,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="dashboard">
+                <a class="nav-link" href="admin.dashboard">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     Dashboard</a>
 
@@ -283,19 +283,19 @@
                                             <td>{{ $position->title }}</td>
 
                                             <td>{{ $position->code }}</td>
-                                
+
                                             @if($position->employees)
                                             @foreach ($position->employees as $emp)
                                                 <td class="col-md-4">{{ $emp->name }}</td>
                                             @endforeach
-                                            
+
                                             @else
                                                 <td>null</td>
-                                            
-                                            @endif 
+
+                                            @endif
 
 
-                                        
+
 
 
                                         </tr>

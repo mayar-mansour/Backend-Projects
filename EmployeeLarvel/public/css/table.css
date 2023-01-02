@@ -1,7 +1,7 @@
 body {
     color: #566787;
     background: #f5f5f5;
-    font-family: 'Varela Round', sans-serif;
+    font-family: "Varela Round", sans-serif;
     font-size: 13px;
 }
 
@@ -14,12 +14,12 @@ body {
     padding: 20px 25px;
     border-radius: 3px;
     min-width: 1000px;
-    box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
 }
 
 .table-title {
     padding-bottom: 15px;
-    background: #58C5C5;
+    background: #58c5c5;
     color: #fff;
     padding: 16px 30px;
     min-width: 100%;
@@ -103,15 +103,15 @@ table.table td a {
 }
 
 table.table td a:hover {
-    color: #2196F3;
+    color: #2196f3;
 }
 
 table.table td a.edit {
-    color: #FFC107;
+    color: #ffc107;
 }
 
 table.table td a.delete {
-    color: #F44336;
+    color: #f44336;
 }
 
 table.table td i {
@@ -148,7 +148,7 @@ table.table .avatar {
 
 .pagination li.active a,
 .pagination li.active a.page-link {
-    background: #03A9F4;
+    background: #03a9f4;
 }
 
 .pagination li.active a:hover {
@@ -161,7 +161,7 @@ table.table .avatar {
 
 .pagination li i {
     font-size: 16px;
-    padding-top: 6px
+    padding-top: 6px;
 }
 
 .hint-text {
@@ -188,7 +188,7 @@ table.table .avatar {
 }
 
 .custom-checkbox label:before {
-    content: '';
+    content: "";
     margin-right: 10px;
     display: inline-block;
     vertical-align: text-top;
@@ -199,8 +199,8 @@ table.table .avatar {
     z-index: 2;
 }
 
-.custom-checkbox input[type="checkbox"]:checked+label:after {
-    content: '';
+.custom-checkbox input[type="checkbox"]:checked + label:after {
+    content: "";
     position: absolute;
     left: 6px;
     top: 3px;
@@ -213,16 +213,16 @@ table.table .avatar {
     transform: rotateZ(45deg);
 }
 
-.custom-checkbox input[type="checkbox"]:checked+label:before {
-    border-color: #03A9F4;
-    background: #03A9F4;
+.custom-checkbox input[type="checkbox"]:checked + label:before {
+    border-color: #03a9f4;
+    background: #03a9f4;
 }
 
-.custom-checkbox input[type="checkbox"]:checked+label:after {
+.custom-checkbox input[type="checkbox"]:checked + label:after {
     border-color: #fff;
 }
 
-.custom-checkbox input[type="checkbox"]:disabled+label:before {
+.custom-checkbox input[type="checkbox"]:disabled + label:before {
     color: #b8b8b8;
     cursor: auto;
     box-shadow: none;
@@ -271,4 +271,11 @@ table.table .avatar {
 
 .modal form label {
     font-weight: normal;
+}
+.pagging img,
+svg {
+    width: 30px;
+}
+.pagging p {
+    padding-top: 1%;
 }

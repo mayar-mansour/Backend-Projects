@@ -43,8 +43,8 @@ class JobController extends Controller
     }
     function fetchPositionData()
     {
-        $positions = Position::all();
-
+        // $positions = Position::all();
+        $positions = Position::paginate(4);
         // $emps = DB::table('employees')
         //     ->join('positions', 'employees.position_id', '=', 'positions.id')
         //     ->select('employees.name', 'positions.id')

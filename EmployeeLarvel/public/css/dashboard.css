@@ -1,5 +1,6 @@
-div {
+div .cont{
     animation: rotate-all 2s 0 infinite linear alternate;
+     margin-top: -100px;
 }
 
 .div1 {
@@ -125,4 +126,9 @@ div {
         background-repeat: no-repeat; /* Do not repeat the image */
         transform: rotate(404deg);
     }
+}
+.containers{
+    align-items: center;
+    text-align: center;
+    margin: auto;
 }

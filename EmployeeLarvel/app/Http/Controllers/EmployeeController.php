@@ -19,14 +19,21 @@ use Illuminate\Support\Facades\Crypt;
 
 use App\Http\Controllers\bcrypt;
 
+
 $positions = Position::all();
 class EmployeeController extends Controller
 {
 
     public function dashboard()
     {
-        return view('dashboard');
+
+        $Positions = Position::count();
+        $employees = Employee::count();
+        // $pinCount = Pin::count();
+
+        return view('dashboard', compact('Positions', 'employees'));
     }
+
 
     public function registartion()
     {
@@ -55,7 +62,7 @@ class EmployeeController extends Controller
         $input->birthdate = $request->birthdate;
         $input->date_hired = $request->date_hired;
         $input->password = bcrypt($request->password);
-       
+
 
 
         if ($image = $request->file('image')) {
@@ -69,16 +76,16 @@ class EmployeeController extends Controller
             // $input->image = "$profileImage";
         }
 
-      
+
         $input->save();
-        return redirect('dashboard')
+        return redirect('admin.dashboard')
             ->with('success', 'employee added successfully.');
     }
 
 
     function fetchEmployeeData()
     {
-        $employees = Employee::all();
+        // $employees = Employee::all();
         $positions = Position::all();
         // $jobs = DB::table('positions')
         //     ->join('employees', 'positions.id', '=', 'employees.position_id')
@@ -89,10 +96,28 @@ class EmployeeController extends Controller
         // }
         // $jobs = employees::where('id')->position()->get();
         $jobs = Employee::where('id', 5)->get();
+        $employees = Employee::paginate(5);
         // dd($jobs);
         return view('display_employee', compact('employees', 'positions', 'jobs'));
     }
+    public function showEmployee($id)
+    {
+        $employees = Employee::find($id);
+        // $attends = Attendance::where('employee_id', Employee::id())->get();
+        $attends = Attendance::where('employee_id', $employees->id)->paginate(2);
+        // $attends = $employees->attendance()->get();
 
+        // $test= $attends->paginate(2);
+        // dd($attends);
+
+        return view('show_employee_details', compact('employees', 'attends'));
+    }
+    // public function pageIndex()
+    // {
+    //     $employees = Employee::paginate(2);
+    //     dd("test");
+    //     return view('show_employee_details', compact('employees'));
+    // }
     public function destroyEmployee($id)
     {
         $employee = Employee::find($id);
@@ -115,7 +140,7 @@ class EmployeeController extends Controller
 
         $employees->name =  $request->get('name');
         $employees->email = $request->get('email');
-        $employees->password = bcrypt($request->password);
+        // $employees->password = Hash::make($request['password']);
         $employees->adress = $request->get('adress');
         $employees->phone = $request->get('phone');
         $employees->birthdate = $request->get('birthdate');
@@ -142,7 +167,7 @@ class EmployeeController extends Controller
         $employees = Employee::all();
         // $positions = Position::all();
         if ($request->has('search')) {
-            $employees =  Employee::where('name', 'like', '%'.$request['search'].'%')->orwhere('email', 'like', '%' . $request['search'] . '%')->get();
+            $employees =  Employee::where('name', 'like', '%' . $request['search'] . '%')->orwhere('email', 'like', '%' . $request['search'] . '%')->get();
             // $positions =  Position::where('title', 'like', '%' . $request['search'] . '%')->get();
             // dd($employees);
         }

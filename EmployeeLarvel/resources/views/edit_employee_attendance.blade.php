@@ -2,17 +2,15 @@
 <html lang="en">
 
 <head>
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Dashboard</title>
+    <title>update Attendance</title>
     <link rel="stylesheet" type="text/css" href="{{ asset('css/sb-admin-2.css') }}" />
     <link rel="stylesheet" type="text/css" href="{{ asset('css/sb-admin-2.min.css') }}" />
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/dashboard.css') }}" />
 
 
     <link href="{{ asset('vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
@@ -20,8 +18,6 @@
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
-
-
 </head>
 
 <body id="page-top">
@@ -33,7 +29,7 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class=" d-flex align-items-center justify-content-center" href="admin.dashboard">
+            <a class=" d-flex align-items-center justify-content-center" href="employee_profile.php">
                 <div class="sidebar-brand-icon w-10 ">
                     <img src="/img/mq1.jpg" alt=""class="w-10">
                 </div>
@@ -43,7 +39,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="admin.dashboard">
+                <a class="nav-link" href="employee_profile.php">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     Dashboard</a>
 
@@ -69,7 +65,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Options</h6>
                         <a class="collapse-item" href="registration">Add New Employee</a>
-                        <a class="collapse-item" href="display_employee">Display Employees </a>
+                        <a class="collapse-item" href="cards.html">Display Employees </a>
                     </div>
                 </div>
             </li>
@@ -99,7 +95,6 @@
             <div class="sidebar-heading">
                 Attendance
             </div>
-
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item active">
                 <a class="nav-link" href="attendance">
@@ -107,7 +102,6 @@
                     Attendance</a>
 
             </li>
-
 
 
 
@@ -127,7 +121,7 @@
 
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
-{{-- <h1>test</h1> --}}
+
             <!-- Main Content -->
             <div id="content">
 
@@ -143,13 +137,12 @@
                     <form
                         class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                         <div class="input-group">
-                            <input type="text" class="form-control bg-light border-0 small"
-                                placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
-                            <div class="input-group-append">
+
+                            {{-- <div class="input-group-append">
                                 <button class="btn btn-primary" type="button">
-                                    <i class="fas fa-search fa-sm"></i>
+                                    Update EMPLOYEE
                                 </button>
-                            </div>
+                            </div> --}}
                         </div>
                     </form>
 
@@ -187,12 +180,8 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                 <form action="{{ route('dashboard_profile') }}" method="get">
-                                {{-- <span class="mr-2 d-none d-lg-inline text-gray-600 small"> {{ $data->name }}</span> --}}
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small"> Mayar Mansour</span>
-                                 </form>
-                                <img class="img-profile rounded-circle"
-                                    src="img/WhatsApp Image 2022-05-17 at 11.25.46 PM.jpeg">
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Mayar Mansour</span>
+                                <img class="img-profile rounded-circle" src="img/undraw_profile.svg">
                             </a>
                             <!-- profile of the admin standard-->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -204,91 +193,123 @@
 
                                 <!-- logout for admin -->
                                 <div class="dropdown-divider"></div>
-                                <button style="border: none;"> <a class="dropdown-item" href="logout_admin">
-                                        <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                        Logout
-                                    </a></button>
+                                <a class="dropdown-item" href="#" data-toggle="modal"
+                                    data-target="#logoutModal">
+                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Logout
+                                </a>
                             </div>
                         </li>
+
                     </ul>
 
                 </nav>
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <div class="align-items-center justify-content-between ">
-                        <h1 class="h3 mb-0 " style="text-align: center"><span
-                                class="text-primary">Welcome</span><span style="color:green"> to</span><span
-                                style="color: orange"> Smart</span><span style="color:orangered"> Gramming
-                            </span><span style="color: rgb(185, 5, 5)"> Company</span>
-                        </h1>
-                        {{-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-                                class="fas fa-download fa-sm text-white-50"></i> Generate Report</a> --}}
-                    </div>
-                    <div class=" cont w-150 pb-5">
-                        <div class="div1" id="one"></div>
-                        <div class="div1" id="two"></div>
-                        <div class="div2" id="three"></div>
-                        <div class="div2" id="four"></div>
 
-                    </div>
-                    <div class="d-flex pt-3 containers "style="margin-top: 5%;">
-                    <div class="col-xl-3 col-md-6 mb-4">
-                        <div class="card-border-left-primary shadow h-150 py-2">
-<div class="card-body">
-<div class="row no-gutters align-items-center">
-    <div class="col mr-2">
-        <div class="h5 mb-0 font-wight-bold text-primary  mb-1">Total Numbers Of Employees</div>
-<form class="g6 mb-0 font-wighr-bold text-gray-800" method="get" action="{{ route('dashboard_count') }}"  >
-<h2>{{ $employees}}</h2>
-</form>
-</div>
-</div>
+                    <section>
+                        <div class="container h-100">
+                            <div>
+
+
+                                <div class="row justify-content-center">
+                                    <div class="col-md-10 col-lg-8 col-xl-5 order-2 order-lg-1">
+
+                                        <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-2"> Update Attendance</p>
+                                        <form method="POST" class="mx-1 mx-md-4"
+                                            action="{{ route('update_employee_attendance' , $attends->id) }}"
+                                            enctype="multipart/form-data">
+                                           
+
+                                            @csrf
+                                            @if (Session::has('success'))
+                                                <div class="alert-success">{{ Session::get('success') }}</div>
+                                            @endif
+                                            @if (Session::has('failed'))
+                                                <div class="alert-danger">{{ Session::get('failed') }}</div>
+                                            @endif
+
+                                            <div class="d-flex flex-row align-items-center mb-4">
+
+                                                <div class="form-outline flex-fill mb-0">
+                                                    <label class="form-label" for="form3Example4cd">check In/Out
+                                                    </label>
+
+                                                    <select list="browsers" name="check_in_out">
+
+
+
+                                                        <option
+                                                            value="{{ old('check_in_out', $attends->check_in_out) }}">
+                                                            {{ $attends->check_in_out }}</option>
+
+                                                    </select>
+
+                                                </div>
+                                            </div>
+                                            <div class="d-flex flex-row align-items-center mb-4">
+
+                                                <div class="form-outline flex-fill mb-0">
+                                                    <label class="form-label" for="form3Example4cd">Date&Time
+                                                    </label>
+                                                    <input type="datetime" name="time_in_out" id="form3Example4cd"
+                                                        class="form-control"
+                                                        value="{{ old('time_in_out', $attends->time_in_out) }}" />
+
+                                                </div>
+                                            </div>
+                                             <div class="d-flex flex-row align-items-center mb-4">
+                                                {{-- <i class="fas fa-user fa-lg me-3 fa-fw"></i> --}}
+                                                <div class="form-outline flex-fill mb-0">
+                                                    <label class="form-label" for="form3Example1c"></label>
+                                                    <input type="hidden" name="hidden_id"
+                                                        value="{{ $attends->id }}" id="form3Example1c"
+                                                        class="form-control" />
+                                                        {{-- @dd($request->hidden_id) --}}
+
+                                                </div>
+                                            </div>
+
+                                            <div class="d-flex justify-content-center">
+                                                <button type="submit"
+                                                    class="btn btn-warning btn-block btn-lg gradient-custom-4 text-body">
+                                                    Update</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div
+                                        class="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
+
+                                        <img src="https://media.istockphoto.com/id/1134016055/vector/businessman-out-from-a-computer-with-a-shield.jpg?s=612x612&w=0&k=20&c=F1_HxR3b_tiynIE2P5LMkdmzdX_3IOxTLJDFppV2odI="
+                                            class="img-fluid" alt="Sample image">
+
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-
                 </div>
-                </div>
-
-                    <div class="col-xl-3 col-md-6 mb-4">
-                        <div class="card-border-left-primary shadow h-150 py-2">
-<div class="card-body">
-<div class="row no-gutters align-items-center">
-    <div class="col mr-2">
-        <div class="h5 mb-0 font-wight-bold text-primary  mb-1">Total Numbers Of Positions</div>
-<form class="g6 mb-0 font-wighr-bold text-gray-800" method="get" action="{{ route('dashboard_count') }}"  >
-<h2>{{ $Positions}}</h2>
-</form>
-</div>
-</div>
-                        </div>
-
-                </div>
-                </div>
-                </div>
-
-                <!-- Scroll to Top Button-->
-                <a class="scroll-to-top rounded" href="#page-top">
-                    <i class="fas fa-angle-up"></i>
-                </a>
+            </div>
+        </div>
+        </section>
 
 
+        <!-- Bootstrap core JavaScript-->
+        <script src="vendor/jquery/jquery.min.js"></script>
+        <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-                <!-- Bootstrap core JavaScript-->
-                <script src="vendor/jquery/jquery.min.js"></script>
-                <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <!-- Core plugin JavaScript-->
+        <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
-                <!-- Core plugin JavaScript-->
-                <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+        <!-- Custom scripts for all pages-->
+        <script src="js/sb-admin-2.min.js"></script>
 
-                <!-- Custom scripts for all pages-->
-                <script src="js/sb-admin-2.min.js"></script>
+        <!-- Page level plugins -->
+        <script src="vendor/chart.js/Chart.min.js"></script>
 
-                <!-- Page level plugins -->
-                <script src="vendor/chart.js/Chart.min.js"></script>
-
-                <!-- Page level custom scripts -->
-                <script src="js/demo/chart-area-demo.js"></script>
-                <script src="js/demo/chart-pie-demo.js"></script>
+        <!-- Page level custom scripts -->
+        <script src="js/demo/chart-area-demo.js"></script>
+        <script src="js/demo/chart-pie-demo.js"></script>
 
 </body>
 
