@@ -225,14 +225,16 @@
                         {{-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                                 class="fas fa-download fa-sm text-white-50"></i> Generate Report</a> --}}
                     </div>
-<<<<<<< HEAD
-                    <div class=" cont w-150 pb-5">
-=======
-                    <div class=" cont w-150">
+
+
+                   <div class=" cont w-150">
                         <div class="div1" id="one"></div>
+                        <div class="div1" id="two"></div>
+                        <div class="div2" id="three"></div>
+                        <div class="div2" id="four"></div>
 
                     </div>
-                    <div class="d-flex pt-3 containers "style="margin-top: 5%;">
+                    <div class="d-flex pt-3 containers "style="margin-top: 15%;">
                     <div class="col-xl-3 col-md-6 mb-4">
                         <div class="card-border-left-primary shadow h-150 py-2">
 <div class="card-body">
