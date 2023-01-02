@@ -23,10 +23,11 @@ use App\Http\Controllers\AdminController;
 // Route::group(['middleware' => 'auth:admin', 'prefix' => 'admin'], function () {
 Route::group(['middleware' => 'auth:admin'], function () {
 
-    Route::get('/', function () {
-        return view('admin.dashboard');
-    });
+//  Route::get('/', function () {
+//         return view('dashboard');
+//     });
     // Route::get('/dashboard_count', [EmployeeController::class, 'dashboard'])->name('dashboard_count');
+    Route::get('/', [EmployeeController::class, 'dashboard'])->name('dashboard_count');
     Route::get('/admin.dashboard', [EmployeeController::class, 'dashboard'])->name('dashboard_count');
     Route::get('/logout_admin', [AdminController::class, 'logoutAdmin'])->name('logout_admin');
     Route::get('/dashboard_profile', [AdminController::class, 'adminprofile'])->name('dashboard_profile');
